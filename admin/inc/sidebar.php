@@ -37,8 +37,8 @@
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
         <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item"><a href="services.php" class="nav-link">All Users</a></li>
-          <li class="nav-item"><a href="addservices.php" class="nav-link">Add user</a></li>
+          <li class="nav-item"><a href="users.php" class="nav-link">All Users</a></li>
+          <li class="nav-item"><a href="adduser.php" class="nav-link">Add user</a></li>
         </ul>
 
         <a href="#" class="sl-menu-link">
