@@ -47,7 +47,9 @@
                         <td><?php echo substr($row['description'], 0, 80); ?></td>
                         <td><?php echo $row['experience']; ?></td>
                         <td><a href="edittrust.php?id=<?php echo $row['id']; ?>">Edit</a></td>
+                        <?php if(Session::get('userid') == $row['id'] || (Session::get('role') == 0)) : ?>
                         <td><a href="deletetrust.php?id=<?php echo $row['id']; ?>">Delete</a></td>
+                        <?php endif;?>
                     <?php endwhile; ?>
                     <?php else : ?>
                         <td style="color:red">Nothing Found</td>

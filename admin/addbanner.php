@@ -27,6 +27,7 @@
                     <label for="button">Button</label>
                     <input name="button" type="text" class="form-control" id="button">
                 </div>
+                <input type="hidden" name="userId" value="<?php echo Session::get('userid'); ?>">
             </div>
             <input class="btn btn-primary mt-3" name="submit" type="submit" value="Add Banner">
         </form>

@@ -45,7 +45,9 @@
                         <td><?php echo $row['percentage']; ?></td>
                         <td><a class="btn btn-<?php echo $status = ($row['status']) ? "success" : "primary" ?>" href="<?php echo $status = ($row['status']) ? "deactiveskill" : "activeskill" ?>.php?id=<?php echo $row['id']; ?>"><?php echo $status = ($row['status']) ? "Active" : "Deactive"; ?></a></td>
                         <td><a href="editskill.php?id=<?php echo $row['id']; ?>">Edit</a></td>
+                        <?php if(Session::get('userid') == $row['id'] || (Session::get('role') == 0)) : ?>
                         <td><a href="deleteskill.php?id=<?php echo $row['id']; ?>">Delete</a></td>
+                        <?php endif;?>
                     <?php endwhile; ?>
                     <?php else : ?>
                         <td style="color:red">Nothing Found</td>

@@ -48,7 +48,9 @@
                         <td><img width="100" src="../img/news/<?php echo $row['image']; ?>" alt=""></td>
                  
                         <td><a href="editnews.php?id=<?php echo $row['id']; ?>">Edit</a></td>
+                        <?php if(Session::get('userid') == $row['id'] || (Session::get('role') == 0)) : ?>
                         <td><a href="deletenews.php?id=<?php echo $row['id']; ?>">Delete</a></td>
+                        <?php endif;?>
                     <?php endwhile; ?>
                     <?php else : ?>
                         <td style="color:red">Nothing Found</td>

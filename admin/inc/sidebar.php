@@ -38,7 +38,12 @@
         </a><!-- sl-menu-link -->
         <ul class="sl-menu-sub nav flex-column">
           <li class="nav-item"><a href="users.php" class="nav-link">All Users</a></li>
+
+          <?php if((Session::get('role') == 0)) :?>
+
           <li class="nav-item"><a href="adduser.php" class="nav-link">Add user</a></li>
+          <?php endif;?> 
+
         </ul>
 
         <a href="#" class="sl-menu-link">
@@ -139,7 +144,7 @@
           <div class="dropdown">
             <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
               <span class="logged-name"><?php echo Session::get('name');?><span class="hidden-md-down"> </span></span>
-              <img src="../img/<?php echo Session::get('image');?>" class="wd-32 rounded-circle" alt="">
+              <img src="../img/users/<?php echo Session::get('image');?>" class="wd-32 rounded-circle" alt="">
             </a>
             <div class="dropdown-menu dropdown-menu-header wd-200">
               <ul class="list-unstyled user-profile-nav">

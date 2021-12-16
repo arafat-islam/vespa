@@ -43,7 +43,9 @@
          
                         <td><img width="100" src="../img/logo/<?php echo $row['image']; ?>" alt=""></td>
                         <td><a class="btn btn-<?php echo $status = ($row['status']) ? "success" : "primary" ?>" href="activelogo.php?id=<?php echo $row['id']; ?>"><?php echo $status = ($row['status']) ? "Active" : "Deactive"; ?></a></td>
+                        <?php if(Session::get('userid') == $row['id'] || (Session::get('role') == 0)) : ?>
                         <td><a href="deletelogo.php?id=<?php echo $row['id']; ?>">Delete</a></td>
+                        <?php endif;?>
                     <?php endwhile; ?>
                     <?php else : ?>
                         <td style="color:red">Nothing Found</td>

@@ -38,6 +38,7 @@
                     Session::set("username", $result['username']);
                     Session::set("name", $result['name']);
                     Session::set("image", $result['image']);
+                    Session::set("role", $result['role']);
                     $_SESSION['login_successfully'] = "Login Successfully";
                     // print_r($_SESSION);
                     header("location: ../index.php"); 

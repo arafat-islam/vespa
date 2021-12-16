@@ -50,7 +50,10 @@
                  
                         <td><a class="btn btn-<?php echo $status = ($row['status']) ? "success" : "primary" ?>" href="activebanner.php?id=<?php echo $row['id']; ?>"><?php echo $status = ($row['status']) ? "Active" : "Deactive"; ?></a></td>
                         <td><a href="editbanner.php?id=<?php echo $row['id']; ?>">Edit</a></td>
+                  
+                        <?php if(Session::get('userid') == $row['id'] || (Session::get('role') == 0) || (Session::get('userid') == $row['userId'])) :?>
                         <td><a href="deletebanner.php?id=<?php echo $row['id']; ?>">Delete</a></td>
+                        <?php endif; ?>
                     <?php endwhile; ?>
                     <?php else : ?>
                         <td style="color:red">Nothing Found</td>

@@ -13,6 +13,7 @@
         $title = $_POST['title'];
         $button = $_POST['button'];
         $description = $_POST['description'];
+        $userID = $_POST['userId'];
         $filename = $_FILES['image']['name'];
         $tmp_name = $_FILES['image']['tmp_name'];
         $extension = explode('.', $filename);
@@ -24,7 +25,7 @@
             header("location: ../addbanner.php");
         } else {
             if(in_array($extension, $allowed_extension)) {
-                $query = "INSERT INTO banners (title, description, button) VALUES ('$title', '$description', '$button')";
+                $query = "INSERT INTO banners (title, description, button, userId) VALUES ('$title', '$description', '$button', '$userID')";
                 $db->insert($query);
                 $id = mysqli_insert_id($db->link);
                 $newfilename = $id .'.'. $extension;

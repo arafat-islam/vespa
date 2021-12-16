@@ -17,8 +17,6 @@
                 </div>
             </div>
 
-            
-
 
             <table class="table table-bordered">
                 <thead>
@@ -33,10 +31,37 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php
+                        $query = "SELECT * FROM users";
+                        $post = $db->select($query);
+                        $serial = 0;
+                        if($post) {
+                        while($users = $post->fetch_assoc()) {
+                     ?>
+                    <tr>
+                        <td><?= ++$serial; ?></td>
+                        <td><?= $users['name'];?></td>
+                        <td><?= $users['email'];?></td>
+                        <td><img src="../img/users/<?= $users['image'];?>" width="100" alt=""></td>
+                        <td><?= $users['created_at'];?></td>
+                        <td><?php 
+                            if ($users['role'] == 0) {
+                                echo "Admin"; 
+                        } elseif ($users['role'] == 1) {
+                            echo "Editor";
+                        }
+                        
+                        ?></td>
 
 
+                        <?php if(Session::get('userid') == $users['id'] || (Session::get('role') == 0)) :?>
 
+                        <td><a href="deleteuser.php?id=<?= $users['id'];?>" class="btn btn-danger"
+                                onclick="return confirm('Are You Sure?');">Delete</a></td>
+                    </tr>
+                    <?php endif;?>
 
+                    <?php } } ?>
                 </tbody>
             </table>
         </div>
@@ -84,15 +109,15 @@
 
 
 
-    <?php //if(isset($_SESSION['moved_to_trash'])) { ?>
-    <!-- <script>
-                Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: '<?php echo $_SESSION['moved_to_trash']; ?>',
-                showConfirmButton: false,
-                timer: 1800
-                });
-
-            </script> -->
-    <?php //} unset($_SESSION['moved_to_trash']);?>
+    <?php if(isset($_SESSION['user_deleted'])) { ?>
+    <script>
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: '<?php echo $_SESSION['
+            user_deleted ']; ?>',
+            showConfirmButton: false,
+            timer: 1800
+        });
+    </script>
+    <?php } unset($_SESSION['user_deleted']);?>

@@ -48,7 +48,9 @@
                         <td><?php echo $row['designation']; ?></td> 
                         
                         <td><a href="editexperience.php?id=<?php echo $row['id']; ?>">Edit</a></td>
+                        <?php if(Session::get('userid') == $row['id'] || (Session::get('role') == 0)) : ?>
                         <td><a href="deleteexperience.php?id=<?php echo $row['id']; ?>">Delete</a></td>
+                        <?php endif;?>
                     <?php endwhile; ?>
                     <?php else : ?>
                         <td style="color:red">Nothing Found</td>
