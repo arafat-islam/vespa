@@ -11,7 +11,7 @@
         <div class="modal-body">
           <p>Leave your contacts and our managers
             will contact you soon.</p>
-          <form action="./action/message.php" method="post">
+          <form action="./action/message.php" method="post" enctype="multipart/form-data">
             <div class="form-group">
               <input type="text" name="name" class="form-control" placeholder="Name">
             </div>
@@ -21,7 +21,9 @@
             <div class="form-group">
               <textarea rows="3" name="message" class="form-control" placeholder="Message"></textarea>
             </div>
-
+            <div class="form-group">
+              <input type="file" name="image" class="form-control" placeholder="Image">
+            </div>
             <div class="form-group mb-0 text-right">
               <input type="submit" name="submit" class="btn" value="Send">
             </div>

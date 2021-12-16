@@ -96,6 +96,6 @@ $db = new Database();
         <li><a class="nav-link" href="#testimonials">Testimonials</a></li>
        </ul>
        <div class="navbar-mobile-footer">
-        <p>© 2020 Richard. All Rights Reserved.</p>
+        <p>© 2020 Arafat. All Rights Reserved.</p>
        </div>
     </nav>

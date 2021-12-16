@@ -128,8 +128,19 @@
           <li class="nav-item"><a href="addnews.php" class="nav-link">Add News</a></li>
         </ul>
 
-  
+        <?php if((Session::get('role') == 0)) :?>
+        <a href="#" class="sl-menu-link">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon icon ion-ios-pie-outline ion-ios-photos-outline tx-20"></i>
+            <span class="menu-item-label">Social Links</span>
+            <i class="menu-item-arrow fa fa-angle-down"></i>
+          </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
+        <ul class="sl-menu-sub nav flex-column">
+          <li class="nav-item"><a href="socials.php" class="nav-link">Social Links</a></li>
+        </ul>
         </div>
+        <?php endif;?>
   </div>
     <!-- ########## END: LEFT PANEL ########## -->
 
@@ -170,14 +181,17 @@
     </div><!-- sl-header -->
     <!-- ########## END: HEAD PANEL ########## -->
 
+  <?php
+     $query = "SELECT * FROM contact";
+     $post = $db->select($query);
+     $row = mysqli_num_rows($post);
+
+  ?>
     <!-- ########## START: RIGHT PANEL ########## -->
     <div class="sl-sideright">
       <ul class="nav nav-tabs nav-fill sidebar-tabs" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" data-toggle="tab" role="tab" href="#messages">Messages (2)</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" role="tab" href="#notifications">Notifications (8)</a>
+          <a class="nav-link active" data-toggle="tab" role="tab" href="#messages">Messages (<?= $row; ?>)</a>
         </li>
       </ul><!-- sidebar-tabs -->
 
@@ -186,61 +200,25 @@
         <div class="tab-pane pos-absolute a-0 mg-t-60 active" id="messages" role="tabpanel">
           <div class="media-list">
             <!-- loop starts here -->
+            <?php 
+              if($post) {
+                while($message = $post->fetch_assoc()) {
+           ?>
             <a href="" class="media-list-link">
               <div class="media">
-                <img src="./img/img3.jpg" class="wd-40 rounded-circle" alt="">
+                <img src="../img/contact/9.jpg" class="wd-40 rounded-circle" alt="">
                 <div class="media-body">
-                  <p class="mg-b-0 tx-medium tx-gray-800 tx-13">Donna Seay</p>
+                  <p class="mg-b-0 tx-medium tx-gray-800 tx-13"><?= $message['name']; ?></p>
+                  <span><?= $message['email']; ?></span>
                   <span class="d-block tx-11 tx-gray-500">2 minutes ago</span>
-                  <p class="tx-13 mg-t-10 mg-b-0">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring.</p>
+                  <p class="tx-13 mg-t-10 mg-b-0"><?= $message['message']; ?></p>
                 </div>
               </div><!-- media -->
             </a>
-            <!-- loop ends here -->
-            <a href="" class="media-list-link">
-              <div class="media">
-                <img src="./img/img4.jpg" class="wd-40 rounded-circle" alt="">
-                <div class="media-body">
-                  <p class="mg-b-0 tx-medium tx-gray-800 tx-13">Samantha Francis</p>
-                  <span class="d-block tx-11 tx-gray-500">3 hours ago</span>
-                  <p class="tx-13 mg-t-10 mg-b-0">My entire soul, like these sweet mornings of spring.</p>
-                </div>
-              </div><!-- media -->
-            </a>
-            <a href="" class="media-list-link">
-              <div class="media">
-                <img src="./img/img7.jpg" class="wd-40 rounded-circle" alt="">
-                <div class="media-body">
-                  <p class="mg-b-0 tx-medium tx-gray-800 tx-13">Robert Walker</p>
-                  <span class="d-block tx-11 tx-gray-500">5 hours ago</span>
-                  <p class="tx-13 mg-t-10 mg-b-0">I should be incapable of drawing a single stroke at the present moment...</p>
-                </div>
-              </div><!-- media -->
-            </a>
-            <a href="" class="media-list-link">
-              <div class="media">
-                <img src="./img/img5.jpg" class="wd-40 rounded-circle" alt="">
-                <div class="media-body">
-                  <p class="mg-b-0 tx-medium tx-gray-800 tx-13">Larry Smith</p>
-                  <span class="d-block tx-11 tx-gray-500">Yesterday, 8:34pm</span>
-
-                  <p class="tx-13 mg-t-10 mg-b-0">When, while the lovely valley teems with vapour around me, and the meridian sun strikes...</p>
-                </div>
-              </div><!-- media -->
-            </a>
-            <a href="" class="media-list-link">
-              <div class="media">
-                <img src="./img/img3.jpg" class="wd-40 rounded-circle" alt="">
-                <div class="media-body">
-                  <p class="mg-b-0 tx-medium tx-gray-800 tx-13">Donna Seay</p>
-                  <span class="d-block tx-11 tx-gray-500">Jan 23, 2:32am</span>
-                  <p class="tx-13 mg-t-10 mg-b-0">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring.</p>
-                </div>
-              </div><!-- media -->
-            </a>
+        <?php } } ?>
           </div><!-- media-list -->
           <div class="pd-15">
-            <a href="" class="btn btn-secondary btn-block bd-0 rounded-0 tx-10 tx-uppercase tx-mont tx-medium tx-spacing-2">View More Messages</a>
+            <!-- <a href="" class="btn btn-secondary btn-block bd-0 rounded-0 tx-10 tx-uppercase tx-mont tx-medium tx-spacing-2">View More Messages</a> -->
           </div>
         </div><!-- #messages -->
 
